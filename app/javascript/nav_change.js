@@ -1,9 +1,10 @@
 $(function () {
   if (location.pathname.match("/")) {
     $('.js-click-animation').on('click', function () {
-      var $this = $(this);
-      $this.toggleClass('active');
-      console.log("a")
+      const $clickMenu = $(this);
+      const $openMenu = $('.js-open');
+      $clickMenu.toggleClass('active');
+      $openMenu.toggleClass('open');
     });
   };
 });
