@@ -1,0 +1,18 @@
+$pc: 767px; // PCの最小
+$tab: 359px;
+@mixin pc {
+  @media (min-width: ($pc)) {
+    @content;
+  }
+}
+@mixin tab {
+  @media (min-width: ($tab)) {
+    @content;
+  }
+}
+$back_color_base: #E5F1DF;
+$back_colorHover_base: #9FC785;
+$font_size_M: 15px;
+$font_color_base: #141412;
+$list_height_M: 75px;
+$list_letterSpace_M: 1.5px;
