@@ -7,6 +7,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #DCEBD3;
   h1 {
     margin: 5px;
     width: 240px;
@@ -79,7 +80,6 @@
 .home-menu-container{
   width: 100%;
   position: fixed;
-
   top: $header_height;
   z-index: 80;
   transition: all 1.2s;
@@ -95,12 +95,13 @@
     justify-content: center;
     border-top: #999 solid 1px;
     &:hover {
-    background-color: $back_colorHover_base;
+      background-color: darken($back_color_base, 15%);
     }
     &:last-of-type {
       border-bottom: #999 solid 1px;
     }
     a {
+      width: 100%;
       letter-spacing: $list_letterSpace_M;
       color: $font_color_base;
       font-size: $font_size_M;
