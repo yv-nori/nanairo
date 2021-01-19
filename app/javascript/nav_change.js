@@ -17,7 +17,30 @@ $(function () {
         $scrollMenu.removeClass('sticky')
       };
     });
-  }
+    // スライドのスタート表示切替
+    $('.js-click-slide-right').on('click', function () {
+      const $images = $('.top_image')
+      max = $images.length;
+      current_order = Number($images.attr('class').slice(-1));
+      $images.removeClass('order' + current_order);
+      if (current_order < max) {
+        $images.addClass('order' + (current_order + 1));
+      } else {
+        $images.addClass('order' + (current_order - max + 1));
+      }
+    });
+    $('.js-click-slide-left').on('click', function () {
+      const $images = $('.top_image')
+      max = $images.length;
+      current_order = Number($images.attr('class').slice(-1));
+      $images.removeClass('order' + current_order);
+      if (current_order > 1) {
+        $images.addClass('order' + (current_order - 1));
+      } else {
+        $images.addClass('order' + (max));
+      }
+    });
+  };
 });
 
 // あ
