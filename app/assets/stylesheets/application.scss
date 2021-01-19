@@ -25,3 +25,47 @@ $font_size_M: 15px;
 $list_height_M: 75px;
 $list_letterSpace_M: 4.5px;
 $header_height: 93px;
+$icon-size: 2em;
+
+@font-face {
+  font-family: 'Angelface';
+  src: font-url('Angelface.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+// @font-face {
+//   font-family: 'Baskerville';
+//   src: font-url('Baskerville.ttc') format('truetype');
+//   font-weight: normal;
+//   font-style: normal;
+// }
+@font-face {
+  font-family: 'sub-en-font';
+  src: font-url('Blankid.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'DINPro-Medium';
+  src: font-url('DINPro-Medium.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'KozGoPr6N-Regular';
+  src: font-url('KozGoPr6N-Regular.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'NewBaskervilleStd-Roman';
+  src: font-url('NewBaskervilleStd-Roman.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'logo-font';
+  src: font-url('CastroScript_PERSONAL_USE_ONLY.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}

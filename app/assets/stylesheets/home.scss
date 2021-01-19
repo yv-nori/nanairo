@@ -147,29 +147,57 @@ header {
     }
   }
 }
+
 // ================================
 // トップ画像
 // ================================
+// スライドショーのアニメーション
+@keyframes anime-start {
+  0% {
+    opacity: 0;
+  }
+  7% {
+    opacity: 1;
+  }
+
+  17% {
+    opacity: 1;
+  }
+
+  25% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+  95% {
+    opacity: 0;
+  }
+  100% {
+    z-index: 9;
+  }
+}
 @keyframes anime {
   0% {
     opacity: 0;
   }
-  8% {
+  5% {
     opacity: 1;
   }
   17% {
     opacity: 1;
   }
   25% {
-    opacity: 0;
+    opacity: 1;
     transform: scale(1.08);
-    z-index: 9;
+  }
+  95% {
+    opacity: 0;
   }
   100% {
-    opacity: 0
+    z-index: 9;
   }
 }
-@mixin image_slide($number) {
+// 各スライドイメージのcssと表示開始時間の生成
+@mixin image_slide($number, $max, $count) {
   background: url("/images/home_top_slide" + $number + ".jpg") no-repeat center center fixed;
   background-size: cover;
   -webkit-background-size: cover;
@@ -183,35 +211,56 @@ header {
   background-repeat: no-repeat;
   position: absolute;
   animation-iteration-count: infinite;
-  animation: anime 36s 0s infinite;
-
+  $time : $max * 6s;
+  @if $count == 0 {
+    animation: anime-start $time 0s infinite;
+  } @else {
+    animation: anime $time 0s infinite;
+  }
 }
+@mixin image_slide_order($start, $max, $count, $order) {
+  @while $count <= ($max - 1) {
+    &.slide#{$start}.order#{$order} {
+      @include image_slide($start, $max, $count);
+      animation-delay: $count * 6s;
+      $count: $count + 1;
+      $start: $start + 1;
+      @if $start > $max {
+        $start: 1;
+      }
+    }
+  }
+}
+// マウスロゴのアニメーション
+@keyframes scroll {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(20px);
+    -ms-transform: translateY(20px);
+    transform: translateY(20px);
+  }
+}
+// イメージボックスのcss
 .top_image_box {
-  background-color: grey;
   min-height: 650px;
   position: relative;
   overflow: hidden;
   color: #fff;
+  // 各イメージのアニメーション開始時間の異なるcssを動的に作成
   .top_image {
-    @for $i from 0 to 4 {
-    &.slide#{$i} {
-      @include image_slide($i);
-      animation-delay:$i * 6s;
+    $start: 1;
+    $max: 5;
+    $count: 0;
+    @for $i from $start through $max {
+      @include image_slide_order($start, $max, $count, $i);
+      $start:$start + 1;
     }
-    // &.slide+$i {
-    //   @include image_slide($i);
-    //   animation-delay: $i * 6s;
-    // }
-  }
-
-    // &.slide1 {
-    //   @include image_slide(1);
-    // }
-    // &.slide2 {
-    //   @include image_slide(2);
-    //  -webkit-animation-delay: 6s;
-    //  animation-delay: 6s;
-    // }
   }
   .text{
     position: absolute;
@@ -243,6 +292,7 @@ header {
       }
     }
   }
+  // マウスロゴ
   .mouse {
     display: block;
     margin: 0 auto;
@@ -269,20 +319,63 @@ header {
       animation-name: scroll;
       z-index: 999;
     }
+    &.hidden {
+      display: none;
+    }
+  }
+  // スライドの切替ボタン
+  .change-slide-container {
+    z-index: 999;
+    position: absolute;
+    width: 30%;
+    height: 100%;
+    &.left {
+      left: 0;
+      text-align: left;
+    }
+    &.right {
+      right: 0;
+      text-align: right;
+    }
+    button {
+      width: 100%;
+      height: 100%;
+    }
+    i {
+      color: $point_color;
+      font-size: $icon-size;
+      padding: 0 20px;
+      opacity: $back_opacity;
+    }
+    &.hidden {
+      display: none;
+    }
   }
 }
 
-@keyframes scroll {
-  0% {
-    opacity: 1;
-    -webkit-transform: translateY(0);
-    -ms-transform: translateY(0);
-    transform: translateY(0);
+
+
+.a1 {
+    font-family: 'logo-font';
+    font-size: 50px;
   }
-  100% {
-    opacity: 0;
-    -webkit-transform: translateY(20px);
-    -ms-transform: translateY(20px);
-    transform: translateY(20px);
+  .a2 {
+    font-family: "sub-en-font";
+    font-size: large;
   }
-}
+  .a3 {
+    font-family: "Blankid";
+    font-size: large;
+  }
+  .a4 {
+    font-family: "DINPro-Medium";
+    font-size: large;
+  }
+  .a5 {
+    font-family: "KozGoPr6N-Regular";
+    font-size: large;
+  }
+  .a6 {
+    font-family: "NewBaskervilleStd-Roman";
+    font-size: large;
+  }
