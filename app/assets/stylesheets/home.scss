@@ -169,7 +169,7 @@ header {
     opacity: 0
   }
 }
-@mixin image_slide($number) {
+@mixin image_slide($number, $max) {
   background: url("/images/home_top_slide" + $number + ".jpg") no-repeat center center fixed;
   background-size: cover;
   -webkit-background-size: cover;
@@ -183,36 +183,37 @@ header {
   background-repeat: no-repeat;
   position: absolute;
   animation-iteration-count: infinite;
-  animation: anime 36s 0s infinite;
-
+  $time : $max * 6s;
+  animation: anime $time 0s infinite;
+}
+@mixin image_slide_order($start, $max, $count, $order) {
+  @while $count <= ($max - 1) {
+    &.slide#{$start}.order#{$order} {
+      @include image_slide($start, $max);
+      animation-delay: $count * 6s;
+      $count: $count + 1;
+      $start: $start + 1;
+      @if $start > $max {
+        $start: 1;
+      }
+    }
+  }
 }
 .top_image_box {
-  background-color: grey;
   min-height: 650px;
   position: relative;
   overflow: hidden;
   color: #fff;
   .top_image {
-    @for $i from 0 to 4 {
-    &.slide#{$i} {
-      @include image_slide($i);
-      animation-delay:$i * 6s;
+    $start: 1;
+    $max: 5;
+    $count: 0;
+    @for $i from $start through $max {
+      @include image_slide_order($start, $max, $count, $i);
+      $start:$start + 1;
     }
-    // &.slide+$i {
-    //   @include image_slide($i);
-    //   animation-delay: $i * 6s;
-    // }
   }
 
-    // &.slide1 {
-    //   @include image_slide(1);
-    // }
-    // &.slide2 {
-    //   @include image_slide(2);
-    //  -webkit-animation-delay: 6s;
-    //  animation-delay: 6s;
-    // }
-  }
   .text{
     position: absolute;
     top:50%;
