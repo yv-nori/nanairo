@@ -11,10 +11,14 @@ $(function () {
     $(window).scroll(function () {
       if ($(window).scrollTop() > 100) {
         const $scrollMenu = $('.js-sticky');
+        const $hides = $('.js-hide')
         $scrollMenu.addClass('sticky')
+        $hides.addClass('hidden')
       } else {
         const $scrollMenu = $('.js-sticky');
+        const $hides = $('.js-hide')
         $scrollMenu.removeClass('sticky')
+        $hides.removeClass('hidden')
       };
     });
     // スライドのスタート表示切替

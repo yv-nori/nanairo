@@ -318,6 +318,9 @@ header {
       animation-name: scroll;
       z-index: 999;
     }
+    &.hidden {
+      display: none;
+    }
   }
   // スライドの切替ボタン
   .change-slide-container {
@@ -342,6 +345,9 @@ header {
       font-size: $icon-size;
       padding: 0 20px;
       opacity: $back_opacity;
+    }
+    &.hidden {
+      display: none;
     }
   }
 }
